@@ -1,21 +1,22 @@
-[REQUIRED] Name: 
-[REQUIRED] Project Title: 
-[REQUIRED] Project Stack: 
-[REQUIRED] GitHub Repo Link: 
+[REQUIRED] Name: Rudy Perez
+[REQUIRED] Project Title: Bet Tracker
+[REQUIRED] Project Stack: Python
+[REQUIRED] GitHub Repo Link: https://github.com/Rudy-Perez-13/apr2022SoloProject
 
-[REQUIRED] Project Description: 
+[REQUIRED] Project Description: A way for users to track their sports bets and money won/lost over time 
 
-[REQUIRED] New Programming Concept(s) I'm Planning to Learn: 
+[REQUIRED] New Programming Concept(s) I'm Planning to Learn: many to many relationships, ajax
 
 [REQUIRED] Week 1 Features (to show at Review during Week 2)
-- 
+- Inputting new bets, viewing your bets, viewing bets by sport, editing bets
 
 [REQUIRED] Week 2 Features (to show at first office hour/lecture of Week 3)
 - ***Finish CSS work (could be Bootstrap or another framework too instead of CSS)***
-- 
+- viewing the bets of other users, tracking account total
+
 
 [REQUIRED] Product Backlog (If I have more time after completing my MVP, I'll start to work on...)
-- 
+- public deployment
 
 
 
