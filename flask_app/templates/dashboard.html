@@ -9,92 +9,93 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body class="container">
-        <header class="d-flex justify-content-between" style="margin: 20px;">
-            <div>
-                <h1>Bet Tracker</h1>
+    <body style="background-image: url('static/istockphoto-831597438-612x612.jpeg');">
+        <div class="container text-white">
+            <header class="d-flex justify-content-between" style="margin: 20px;">
+                <div>
+                    <h1>Bet Tracker</h1>
+                </div>
+                <div>
+                    <button class="btn btn-danger" onclick="location.href='/new/bet'">Add a Bet</button>
+                    <button class="btn btn-danger" onclick="location.href='/logout'">Logout</button>
+                </div>
+            </header>
+            <div style="margin: 20px;">
+                <h2>{{user.first_name}}'s Bets</h2>
+                <table class="table table-secondary table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Bet</th>
+                            <th>Odds</th>
+                            <th>Wager</th>
+                            <th>Result</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for this_bet in all_bets %}
+                        <tr>
+                            <td>
+                                <p>{{this_bet.bet}}</p>
+                            </td>
+                            <td>
+                                <p>{{this_bet.odds}}</p>
+                            </td>
+                            <td>
+                                <p>${{this_bet.wager}}</p>
+                            </td>
+                            <td>
+                                <p>{{this_bet.result}}</p>
+                            </td>
+                            <td>
+                                <button onclick="location.href='/edit/{{this_bet.id}}'">Edit</button>
+                                <button onclick="location.href='/delete/{{this_bet.id}}'">Delete</button>
+                                <button onclick="location.href='/show/{{this_bet.id}}'">View</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-            <div>
-                <h2>{{user.first_name}} {{user.last_name}}</h2>
-                <button onclick="location.href='/new/bet'">Add a Bet</button>
-                <button onclick="location.href='/logout'">Logout</button>
+            <div style="margin: 20px;">
+                <h2>All Winning Bets</h2>
+                <table class="table table-info table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Bet</th>
+                            <th>Odds</th>
+                            <th>Bettor</th>
+                            <th>Likes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for won_bet in all_liked_won_bets %}
+                        <tr>
+                            <td>
+                                <p>{{won_bet.bet}}</p>
+                            </td>
+                            <td>
+                                <p>{{won_bet.odds}}</p>
+                            </td>
+                            <td>
+                                <p>{{won_bet.user.first_name}} {{won_bet.user.last_name}}</p>
+                            </td>
+                            <td>
+                                <p>{{ won_bet.like_count }}</p>
+                            </td>
+                            {% if not won_bet.is_liked_by_logged_in_user %}
+                            <td>
+                                <a href="/bets/like/{{ won_bet.id }}">Like</a>
+                            </td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-        </header>
-        <div style="margin: 20px;">
-            <h2>{{user.first_name}}'s Bets</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Bet</th>
-                        <th>Odds</th>
-                        <th>Wager</th>
-                        <th>Result</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for this_bet in all_bets %}
-                    <tr>
-                        <td>
-                            <p>{{this_bet.bet}}</p>
-                        </td>
-                        <td>
-                            <p>{{this_bet.odds}}</p>
-                        </td>
-                        <td>
-                            <p>{{this_bet.wager}}</p>
-                        </td>
-                        <td>
-                            <p>{{this_bet.result}}</p>
-                        </td>
-                        <td>
-                            <button onclick="location.href='/edit/{{this_bet.id}}'">Edit</button>
-                            <button onclick="location.href='/delete/{{this_bet.id}}'">Delete</button>
-                            <button onclick="location.href='/show/{{this_bet.id}}'">View</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div style="margin: 20px;">
-            <h2>All Winning Bets</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Bet</th>
-                        <th>Odds</th>
-                        <th>Bettor</th>
-                        <th>Likes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for won_bet in all_liked_won_bets %}
-                    <tr>
-                        <td>
-                            <p>{{won_bet.bet}}</p>
-                        </td>
-                        <td>
-                            <p>{{won_bet.odds}}</p>
-                        </td>
-                        <td>
-                            <p>{{won_bet.user.first_name}} {{won_bet.user.last_name}}</p>
-                        </td>
-                        <td>
-                            <p>{{ won_bet.like_count }}</p>
-                        </td>
-                        {% if not won_bet.is_liked_by_logged_in_user %}
-                        <td>
-                            <a href="/bets/like/{{ won_bet.id }}">Like</a>
-                        </td>
-                        {% else %}
-                        <td></td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

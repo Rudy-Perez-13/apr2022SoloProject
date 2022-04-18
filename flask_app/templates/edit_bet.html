@@ -9,48 +9,49 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body class="container">
-        <header class="d-flex justify-content-between" style="margin: 20px;">
-            <div>
-                <h1>Bet Tracker</h1>
+    <body style="background-image: url('/static/istockphoto-831597438-612x612.jpeg');">
+        <div class="container">
+            <header class="d-flex justify-content-between" style="margin: 20px;">
+                <div>
+                    <h1 class="text text-white text-bolder">Bet Tracker</h1>
+                </div>
+                <div>
+                    <button class="btn btn-danger" onclick="location.href='/dashboard'">Dashboard</button>
+                    <button class="btn btn-danger" onclick="location.href='/logout'">Logout</button>
+                </div>
+            </header>
+            <div style="margin: 20px;">
+                <form action="/update_bet/{{one_bet.id}}", method="POST" class="text text-white text-bolder">
+                    {% with messages = get_flashed_messages() %} 
+                    {% if messages %} 
+                        {% for message in messages %}  
+                            <p>{{message}}</p> 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label>Bet:</label>
+                    <input class="form-control" type="text" name="bet" required>
+                </div>
+                <div class="form-group">
+                    <label>Odds:</label>
+                    <input class="form-control" type="number" name="odds" required>
+                </div>
+                <div class="form-group">
+                    <label>Wager:</label>
+                    <input class="form-control" type="number" name="wager" required>
+                </div>
+                <div class="form-group">
+                    <select class="custom-select" name="result">
+                        <option selected>Result</option>
+                        <option value="won">Won</option>
+                        <option value="lost">Lost</option>
+                        <option value="push">Push</option>
+                    </select>
+                </div>
+                    <button class="btn btn-primary">Update</button>
+                </form>
             </div>
-            <div>
-                <h2>{{user.first_name}} {{user.last_name}}</h2>
-                <button onclick="location.href='/dashboard'">Dashboard</button>
-                <button onclick="location.href='/logout'">Logout</button>
-            </div>
-        </header>
-        <div style="margin: 20px;">
-            <form action="/update_bet/{{one_bet.id}}", method="POST">
-                {% with messages = get_flashed_messages() %} 
-                {% if messages %} 
-                    {% for message in messages %}  
-                        <p>{{message}}</p> 
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <div class="form-group">
-                <label>Bet:</label>
-                <input class="form-control" type="text" name="bet" required>
-            </div>
-            <div class="form-group">
-                <label>Odds:</label>
-                <input class="form-control" type="number" name="odds" required>
-            </div>
-            <div class="form-group">
-                <label>Wager:</label>
-                <input class="form-control" type="number" name="wager" required>
-            </div>
-            <div class="form-group">
-                <select class="custom-select" name="result">
-                    <option selected>Result</option>
-                    <option value="won">Won</option>
-                    <option value="lost">Lost</option>
-                    <option value="push">Push</option>
-                </select>
-            </div>
-                <button>Update</button>
-            </form>
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

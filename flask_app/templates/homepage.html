@@ -9,65 +9,76 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body class="container d-flex">
-        <div class="card">
-            <form action="/register" method="POST" class="card-body">
-                <h1>Registration</h1>
-                {% with messages = get_flashed_messages(category_filter=["registration"]) %} 
-                    {% if messages %} 
-                        {% for message in messages %}  
+    <body style="background-image: url('static/istockphoto-831597438-612x612.jpeg');">
+        <div class="container">
+            <h1 class="text-center text-white fw-bolder">Bet Tracker</h1>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <form action="/register" method="POST" class="card-body">
+                            <h1>Registration</h1>
+                            {% with messages = get_flashed_messages(category_filter=["registration"]) %} 
+                            {% if messages %} 
+                            {% for message in messages %}  
                             <p>{{message}}</p> 
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                <div>
-                    <label>First Name:</label>
-                    <input type="text" name="first_name">
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <div>
+                                <label>First Name:</label>
+                                <input type="text" name="first_name">
+                            </div>
+                            <div>
+                                <label>Last Name:</label>
+                                <input type="text" name="last_name">
+                            </div>
+                            <div>
+                                <label>Email:</label>
+                                <input type="email" name="email">
+                            </div>
+                            <div>
+                                <label>Password:</label>
+                                <input type="password" name="password">
+                            </div>
+                            <div>
+                                <label>Confirm Password:</label>
+                                <input type="password" name="confirm_pw">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input type="text" name="last_name">
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email">
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" name="password">
-                </div>
-                <div>
-                    <label>Confirm Password:</label>
-                    <input type="password" name="confirm_pw">
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-        </div>
-        <div class="card">
-            <form action="/login" method="POST" class="card-body">
-                <h1>Login</h1>
-                {% with messages = get_flashed_messages(category_filter=["login"]) %} 
-                    {% if messages %} 
-                        {% for message in messages %}  
+                <div class="col">
+                    <div class="card">
+                        <form action="/login" method="POST" class="card-body">
+                            <h1>Login</h1>
+                            {% with messages = get_flashed_messages(category_filter=["login"]) %} 
+                            {% if messages %} 
+                            {% for message in messages %}  
                             <p>{{message}}</p> 
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email">
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <div>
+                                <label>Email:</label>
+                                <input type="email" name="email">
+                            </div>
+                            <div>
+                                <label>Password:</label>
+                                <input type="password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" name="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+            </div>
         </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
